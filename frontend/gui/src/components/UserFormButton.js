@@ -4,21 +4,6 @@ import axios from 'axios';
 
 import { Button, Modal, Form, Input, Select } from 'antd';
 
-function onChange(value) {
-    console.log(`selected ${value}`);
-}
-
-function onBlur() {
-    console.log('blur');
-}
-
-function onFocus() {
-    console.log('focus');
-}
-
-function onSearch(val) {
-    console.log('search:', val);
-}
 
 const UserForm = Form.create({ name: 'form_in_modal' })(
 
@@ -68,13 +53,9 @@ const UserForm = Form.create({ name: 'form_in_modal' })(
                                 style={{ width: 200 }}
                                 placeholder="Select a group"
                                 optionFilterProp="children"
-                                onChange={onChange}
-                                onFocus={onFocus}
-                                onBlur={onBlur}
-                                onSearch={onSearch}
-                            // filterOption={(input, option) =>
-                            //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            // }
+                            filterOption={(input, option) =>
+                                option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
                             >
                                 {groups.map((group, i) => <Option value={group.id} key={group.id}>{group.name}</Option>)}
                             </Select>)}
